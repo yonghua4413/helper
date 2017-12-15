@@ -88,15 +88,18 @@ class Http {
         $ip   = $long ? array($ip, $long) : array('0.0.0.0', 0);
         return $ip[$type]; 
     }
-    
+    /**
+     * 下载文件
+     * 使用 try {} catch{}
+     */
     public static function downloadFile($filepath = ''){
-        if($filepath)
+        if(!file_exists($filepath)) throw new Exception('file is not exists!');
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename='.basename($filepath));
         header('Content-Transfer-Encoding: binary');
-        header('Expires: 0′);
-        header('Cache-Control: must-revalidate, post-check=0, pre-check=0′);
+        header('Expires: 0′');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0′');
         header('Pragma: public');
         header('Content-Length: ' . filesize($filepath));
         readfile($filepath);
