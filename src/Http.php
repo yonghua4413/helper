@@ -1,5 +1,5 @@
 <?php
 namespace YYHhelper;
-class Helper {
-
+class Http {
+    
 }
